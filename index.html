@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Triángulos</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap">
+  <style>
+    body {
+      background-color: #f4f6f8;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #007BFF;
+      box-shadow: 0 0 4px rgba(0,123,255,0.5);
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 15px;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #resultado {
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Calculadora de Triángulos</h1>
+  <div class="card">
+    <h2>Usar Ley de los Cosenos</h2>
+    <label>Lado a:</label>
+    <input type="number" id="ladoA">
+    <label>Lado b:</label>
+    <input type="number" id="ladoB">
+    <label>Ángulo entre ellos (°):</label>
+    <input type="number" id="anguloAB">
+    <button onclick="calcularLadoC()">Calcular lado c</button>
+    <div id="resultado"></div>
+  </div>
+</div>
+
+<script>
+  function calcularLadoC() {
+    const a = parseFloat(document.getElementById("ladoA").value);
+    const b = parseFloat(document.getElementById("ladoB").value);
+    const angulo = parseFloat(document.getElementById("anguloAB").value);
+
+    if (isNaN(a) || isNaN(b) || isNaN(angulo)) {
+      document.getElementById("resultado").innerText = "Por favor, ingresa todos los valores.";
+      return;
+    }
+
+    const rad = angulo * Math.PI / 180;
+    const c = Math.sqrt(a*a + b*b - 2*a*b*Math.cos(rad));
+
+    document.getElementById("resultado").innerText = `Lado c ≈ ${c.toFixed(2)} unidades.`;
+  }
+</script>
+</body>
+</html>
